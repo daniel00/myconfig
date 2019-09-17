@@ -1,0 +1,126 @@
+set backspace=2
+set scrolloff=5
+
+"nnoremap W :w<CR>
+
+inoremap  jk <Esc>
+cnoremap  jk <Esc>
+vnoremap  ;  <Esc>
+
+nnoremap  n  nzz
+nnoremap  N  Nzz
+nnoremap  *  *zz
+nnoremap  #  #zz
+nnoremap  g* g*zz
+nnoremap  G  Gzz
+
+nnoremap  <C-W> <C-Y>
+
+vnoremap  cp	"+y
+vnoremap  <C-C>	"+y
+nnoremap  <C-C>	"+yy
+nnoremap  <C-V> "+p
+vnoremap  <C-V> "+p
+inoremap  <C-V> <ESC>"+pi
+
+nnoremap  <CR> :nohl<CR>
+
+
+inoremap <C-H> <Left>
+inoremap <C-L> <Right>
+inoremap <C-J> <BS>
+inoremap <C-K> <DEL>
+
+inoremap <C-O> <Esc>o
+
+nnoremap <C-j> <C-d>zz
+nnoremap <C-k> <C-u>zz
+nmap <C-n> :vsc Edit.NextMethod<cr>zz
+nmap <C-m> :vsc Edit.PreviousMethod<cr>zz
+
+let mapleader="<space>"
+
+nmap <leader>b :vsc Debug.ToggleBreakpoint<cr>
+nmap <leader>r :vsc Debug.StartWithoutDebugging<cr>
+nmap <leader>d :vsc Debug.Start<cr>
+"nnoremap <leader>r :vsc TestExplorer.RunAllTestsInContext<cr>
+"nnoremap <leader>R :vsc TestExplorer.DebugAllTestsInContext<cr>
+
+nmap <leader>e     :vsc View.SolutionExplorer<CR>
+nmap <leader>fr :vsc Edit.FindAllReferences<cr>
+nmap <leader>ff :vsc Edit.FindinFiles<cr>
+
+nnoremap <C-O> :vsc View.NavigateBackward<CR>
+nnoremap <C-I> :vsc View.NavigateForward<CR>
+
+vnoremap <C-K> :vsc Edit.SurroundWith<CR>
+
+
+nmap <C-H> <C-PageUp>		
+nmap <C-L> <C-PageDown>
+
+nmap me     :vsc View.SolutionExplorer<CR>
+
+
+nmap <leader>s	:vsc Tools.InvokeAceJumpCommand<CR>
+"nmap <leader><leader>r	:vsc  Edit.Rename<CR>
+
+set nu
+set shiftwidth=4
+set tabstop=4
+set ignorecase
+
+
+
+""" for visual studio key map """
+nnoremap gA :vsc Edit.QuickInfo<Enter>
+nnoremap gcc :vsc Edit.ToggleComment<CR>
+vnoremap gc  :vsc Edit.ToggleComment<CR>
+
+":nnoremap <C-w>l :vsc Window.MovetoNextTabGroup<CR>
+":nnoremap <C-w>h :vsc Window.MovetoPreviousTabGroup<CR>
+
+nnoremap go ^
+nnoremap gl g_
+nnoremap g; '.
+
+" Surround simulating bindings
+nnoremap s) ciw(<C-r>")<Esc>
+nnoremap s] ciw[<C-r>"]<Esc>
+nnoremap s} ciw{<C-r>"}<Esc>
+nnoremap s> ciw<lt><C-r>"><Esc>
+nnoremap s" ciw"<C-r>""<Esc>
+nnoremap s' ciw'<C-r>"'<Esc>
+nnoremap sw) ciW(<C-r>")<Esc>
+nnoremap sw] ciW[<C-r>"]<Esc>
+nnoremap sw} ciW{<C-r>"}<Esc>
+nnoremap sw> ciW<lt><C-r>"><Esc>
+nnoremap sw" ciW"<C-r>""<Esc>
+nnoremap sw' ciW'<C-r>"'<Esc>
+
+" Surround delete bindings
+nnoremap ds) vi(dvhp
+nnoremap ds] vi[dvhp
+nnoremap ds} vi{dvhp
+nnoremap ds> vi<dvhp
+nnoremap ds" vi"dvhp
+nnoremap ds' vi'dvhp
+
+" Surround change bindings
+nnoremap cs"' vi"oh<Esc>msvi"l<Esc>cl'<Esc>`scl'<Esc>
+nnoremap cs'" vi'oh<Esc>msvi'l<Esc>cl"<Esc>`scl"<Esc>
+
+" Surround visual selected text
+vnoremap S" c"<C-r>""<Esc>
+vnoremap S' c"<C-r>"'<Esc>
+vnoremap S) c(<C-r>")<Esc>
+vnoremap S] c[<C-r>"]<Esc>
+vnoremap S} c{<C-r>"}<Esc>
+vnoremap S> c<lt><C-r>"><Esc>
+vnoremap S* c/*<C-r>"*/<Esc>
+"vnoremap St c<lt>div><CR><C-r>"<Esc>
+" Surround in div tag and edit tag
+vnoremap St c<lt>div><CR><C-r>"<Esc>`<lt>lcw
+
+
+nnoremap  yif vaBVoky<Esc>j%
