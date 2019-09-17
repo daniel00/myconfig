@@ -1,5 +1,8 @@
-﻿GroupAdd, Broweser, ahk_exe chrome.exe
-; GroupAdd, Broweser, ahk_class IEFrame
+﻿;global variables
+mode := "windows"
+
+
+
 
 GroupAdd, NoteSpace, ahk_class Notepad
 GroupAdd, NoteSpace, ahk_class IEFrame
@@ -21,50 +24,26 @@ return
 
 SetTitleMatchMode, 2
 
-:*b2:jk::
-Send {Esc Down}
-Sleep, 50
-Send {Esc Up}
-return
 
 
 
-;Esc anywhere, Ctrl+[
-^[::
-Send {Esc Down}
-Sleep, 50
-Send {Esc Up}
-return
 
 
-;move windows , Alt-Tab, Ctrl-;
-LCtrl & `;:: AltTab
-; LCtrl & `;:: 
-; Send, {Alt Down}
-; Sleep, 1
-; Send, {Tab}
-; Sleep, 1
-; Send, {Alt Up}
+;Global hotkeys
+;======================================================================
+^;::Send {Esc}				;Ctrl+;
+LCtrl & '::AltTab			;Ctrl+' / switch windows , Alt-Tab, Ctrl-;
 
-;move windwos, Alt-Tab, Ctrl-Tab
-LCtrl & Tab::AltTab
+^\::WinClose,    A
+;!m::WinMaximize, A         ;Maximize Active Window
+;!n::WinMinimize, A         ;Minimize Active Window
+;!u::WinRestore,  A
 
-; #IfWinNotActive, ahk_exe devenv.exe Code.exe ahk_exe chrome.exe
-; #lfWinNotActive ahk_group Editor 
-; ^h::Send, { Left }
-; ^j::Send, { Down }
-; ^k::Send, { Up }
-; ^l::Send, { Right }
-; #IfWinNotActive
+;======================================================================
 
-;close window , Alt - F4, Ctrl-'
-; ^'::Send {AltDown}{F4}{AltUp}
-; ^'::!F4
 
-^'::WinClose,    A
-!m::WinMaximize, A         ;Maximize Active Window
-!n::WinMinimize, A         ;Minimize Active Window
-!u::WinRestore,  A
+
+
 
 #IfWinActive, ahk_class TaskSwitcherWnd
 h::left
@@ -93,53 +72,53 @@ l:: Send {Right}
 ; p:: Send {Up}
 #IfWinActive
 
-#IfWinActive ahk_group Broweser
-; ^d::MsgBox, in chrome
-^j:: Send {BS}
-^k:: Send {Del}
-^h:: Send {Left}
-^l:: Send {Right}
+; #IfWinActive ahk_group Broweser
+; ; ^d::MsgBox, in chrome
+; ^j:: Send {BS}
+; ^k:: Send {Del}
+; ^h:: Send {Left}
+; ^l:: Send {Right}
 
-^n:: Send {Down}
-^p:: Send {Up}
-^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-#IfWinActive
+; ^n:: Send {Down}
+; ^p:: Send {Up}
+; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
+; #IfWinActive
 
 
 ; #IfWinActive ahk_class CabinetWClass ahk_exe Q-dir.exe
 ; #IfWinActive ahk_group EXPLORER
-#IfWinActive ahk_class CabinetWClass
+; #IfWinActive ahk_class CabinetWClass
 
-    ^j::Send { Down }
-    ^k::Send {Up}
-    ^u::Send !{ Up }
+;     ^j::Send { Down }
+;     ^k::Send {Up}
+;     ^u::Send !{ Up }
 
-    ^h::Send {PgDn}
-    ^l::Send {PgUp} 
+;     ^h::Send {PgDn}
+;     ^l::Send {PgUp} 
 
-    ;New folder Ctrl + Shift + n
-    ; F4::^+n
-#IfWinActive
+;     ;New folder Ctrl + Shift + n
+;     ; F4::^+n
+; #IfWinActive
 
 
 
-#IfWinActive, ahk_class #32770
-^h:: Send {Left}
-^j:: Send {BS}
-^l:: Send {Right}
-^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-#IfWinActive 
+; #IfWinActive, ahk_class #32770
+; ^h:: Send {Left}
+; ^j:: Send {BS}
+; ^l:: Send {Right}
+; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
+; #IfWinActive 
 
 
 ; #IfWinActive, ahk_class Notepad ahk_class IEFrame
-#IfWinActive, ahk_group NoteSpace 
-^h::Send {Left} 
-^j::Send {Down}
-^k::Send {Up}
-^l::Send {Right}
-^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-^o:: Send {End}{Enter}
-#IfWinActive 
+; #IfWinActive, ahk_group NoteSpace 
+; ^h::Send {Left} 
+; ^j::Send {Down}
+; ^k::Send {Up}
+; ^l::Send {Right}
+; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
+; ^o:: Send {End}{Enter}
+; #IfWinActive 
 
 ; #IfWinActive,  ahk_exe searchUI.exe
 ; ^h::Send {Left} 
@@ -315,20 +294,7 @@ Run, everything.exe
 return
 
 ::]npp::
-; #IfWinExist, ahk_exe notepad.exe
-; WinClose, Notepad
-; Process, close, notepad.exe
-;close all notepad window
 WinClose ahk_group NPP
-
-; ; If WinExist(ahk_exe notepad.exe)
-; If WinExist(ahk_class Notepad)
-; {
-;     MsgBox, npp exist
-;     WNotepadNotepadinClose
-; }
-; else
-;     MsgBox, npp not exist
 return
 
 
@@ -351,7 +317,7 @@ else if (aa = "vs7")
 else if (aa = "ee")
     Run, explorer.exe
 else if (aa = "ahk")
-	Run, C:\Program Files\Vim\vim81\gvim.exe D:/yoo/yoo_hotkey.ahk
+	Run,  gvim.exe %A_ScriptFullPath%
 else if (aa = "goo")
     Run, http://google.com
 else if (aa = "nav")
@@ -400,13 +366,12 @@ Send, { Del }
 return
 
 ;view cached page in chrome
-^+l::
-Send, !d
-Sleep, 10
-Send, {Home}
-Sleep, 10
-Send, cache:{enter}
-
+; ^+l::
+; Send, !d
+; Sleep, 10
+; Send, {Home}
+; Sleep, 10
+; Send, cache:{enter}
 
 
 
@@ -414,3 +379,102 @@ Send, cache:{enter}
 ;^j::Send {Down}
 ;^k::Send {Up}
 ;^l::Send {Right}
+
+
+;================================================================================
+;fast switch task, 윈도우 창을 빠르게 스위치 하는 단축키
+;================================================================================
+
+^0::	;Ctrl+0 : chrome
+IfWinNotExist, ahk_exe chrome.exe
+	Run, chrome.exe
+if WinActive("ahk_exe chrome.exe")
+	Send ^{tab}   ;switch chrome tabs
+else
+	WinActivate ahk_exe chrome.exe
+Return
+
+^9::	;Ctrl+9 : explorer
+IfWinNotExist, ahk_class CabinetWClass
+	Run, explorer.exe
+GroupAdd, G_EXPLORER, ahk_class CabinetWClass
+if WinActive("ahk_exe explorer.exe")
+	GroupActivate, G_EXPLORER, r
+else
+	WinActivate ahk_class CabinetWClass
+return
+
+^5::
+IfWinNotExist, ahk_exe gvim.exe
+    Run, gvim.exe
+WinActivate ahk_exe gvim.exe 
+return
+    
+;================================================================================
+
+
+#IfWinActive ahk_exe chrome.exe
+^h::Send ^+{tab}	;previous tab
+^l::Send ^{tab}		;next tab
+^n::Send {n}{z}{z}
+^j::Send {Down}
+^k::Send {Up}
+; ^n::Send {Down}
+; ^p::Send {Up}
+
+;same above action to Function Keys
+F1::Send ^+{tab}	;previous tab
+F2::Send ^{tab}		;next tab
+F3::Send ^w			;close tab
+#IfWinActive
+
+
+#IfWinActive ahk_exe notepad++.exe
+F1::Send ^{PgUp}
+F2::Send ^{PgDn}	;previous tab
+F3::Send ^w			;close current tab
+F4::Send ^W			;close all tab
+#IfWinActive
+
+;vim mode test
+; LCtrl & Tab::
+RCtrl::
+; ^Space::   ;Ctrl + Space
+if (mode=="windows")
+{
+    mode := "vim_normal"
+    ; SetCapsLockState, On
+    SetScrollLockState, On
+    ; MsgBox, current mode is vim_normal
+}
+else if (mode == "vim_normal")
+{
+    mode := "windows"
+    ; SetCapsLockState, Off
+    SetScrollLockState, Off
+    ; MsgBox, current mode is windows
+}
+return
+
+#If (mode == "vim_normal")
+h::Left
+j::Down
+k::Up
+l::Right
+
+n::PgDn
+p::PgUp
+
+; g::Run, gvim.exe
+; e::Run, everything.exe
+#If
+
+; g::
+; if (GetKeyState(ScrollLock, "P"))
+; MsgBox, gg
+; return
+
+; g & g::
+; if (mode=="vim_normal")
+; Send, {Home}
+; return
