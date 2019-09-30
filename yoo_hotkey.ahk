@@ -424,13 +424,22 @@ return
 IfWinNotExist, ahk_exe devenv.exe
     Run, devenv.exe
 WinActivate ahk_exe devenv.exe 
-; Send, !w
-; Send, w
-; Send, {Enter}
+; Sleep, 100
+; Send !{w}{w}{Enter}
 Send {Tab}
+; Send !{0}
 return
     
 ;================================================================================
+
+; #IfWinActive ahk_exe devenv.exe
+; !.::
+; Send, !{ w }
+; Sleep 10
+; Send, { w }
+; Sleep 10
+; Send, {Enter}
+; #If
 
 
 #IfWinActive ahk_exe chrome.exe
