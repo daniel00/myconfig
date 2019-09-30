@@ -1,0 +1,111 @@
+ " let configpath = 'd:/yoo/myconfig/.cvimrc'
+ " set localconfig
+
+"set autoupdategist
+"map n :execute nzz<CR>
+"map N :execute Nzz<CR>
+"map <C-k> nextTab
+"map <C-j> previousTab
+
+
+
+
+ " let vimcommand = 'st vi'
+ " imap <C-o> editWithVim
+ " map h goBack
+ " map l goForward
+ " map J nextTab
+ " map K previousTab
+
+ " set completeonopen
+ " set noautofocus
+ " set nohud
+ " "set nodimhintcharacters
+ " set scalehints
+ " set numerichints
+ " set cncpcompletion
+ " set autohidecursor
+ " set smoothscroll
+ " set nativelinkorder
+ " set sortlinkhints
+ " "set linkanimations
+ " set typelinkhints
+ " let mapleader = ','
+ " let zoomfactor = 0.05
+ " let scrollduration = 250
+ " let locale = "uk"
+ " "let searchengine g  = 'http://www.google.co.uk/search?aq=t&q='
+ " "let searchengine /. = 'http://slashdot.org/index2.pl?fhfilter='
+ " "let searchengine nc  = 'http://search.ncix.com/search/?qcatid=0&q='
+ " "let searchengine ng  = 'http://www.newegg.ca/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description='
+
+ " let searchengine gl   = "https://www.google.co.uk/search?aq=t&btnI=I%27m+Feeling+Lucky&q="
+ " let searchengine l    = "http://libgen.io/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def"
+ " let searchengine wg   = "https://www.google.co.uk/search?sitesearch=wikipedia.org&domains=wikipedia.org&q="
+ " let searchengine w    = 'http://www.google.co.uk/search?sitesearch=en.wikipedia.org&domains=en.wikipedia.org&btnI=I%27m+Feeling+Lucky&q='
+ " let searchengine cg   = "https://www.google.co.uk/search?sitesearch=c-faq.com&domains=c-faq.com&q="
+ " let searchengine c    = 'http://www.google.co.uk/search?sitesearch=c-faq.com&domains=c-faq.com&btnI=I%27m+Feeling+Lucky&q='
+ " let searchengine pw   = 'http://www.google.co.uk/search?sitesearch=proofwiki.org&domains=proofwiki.org&btnI=I%27m+Feeling+Lucky&q='
+ " let searchengine pwg  = 'http://www.google.co.uk/search?sitesearch=proofwiki.org&domains=proofwiki.org&q='
+ " let searchengine gw   = 'http://www.google.co.uk/search?sitesearch=subwiki.org&domains=subwiki.org&btnI=I%27m+Feeling+Lucky&q='
+ " let searchengine gwg  = 'http://www.google.co.uk/search?sitesearch=subwiki.org&domains=subwiki.org&q='
+ " let searchengine a    = 'http://www.google.com/search?sitesearch=wiki.asterisk.org&domains=wiki.asterisk.org&btnI=I%27m+Feeling+Lucky&q='
+ " let searchengine ag   = 'http://www.google.com/search?sitesearch=wiki.asterisk.org&domains=wiki.asterisk.org&q='
+ " let searchengine u    = 'http://www.youtube.co.uk/results?search_query=%s'
+ " let searchengine dg   = 'http://www.google.co.uk/search?tbs=dfn%3A1&q='
+ " let searchengine v  = 'http://www.larousse.fr/conjugaison/rechercher?q='
+ " let searchengine d    = 'http://www.oxforddictionaries.com/us/definition/english-thesaurus/'
+ " let searchengine dd   = 'http://www.oxforddictionaries.com/us/definition/english/'
+ " let searchengine n    = 'http://www.nzbindex.nl/search/?max=100&minsize=3000&more=1&q='
+ " let searchengine nd   = 'http://www.nzbindex.nl/search/?max=100&minsize=700&more=1&q='
+ " let searchengine df   = 'http://www.larousse.fr/dictionnaires/rechercher?q='
+ " let searchengine dfc  = 'http://www.larousse.fr/conjugaison/rechercher?q='
+ " let searchengine m    = 'https://www.google.ca/maps/search/'
+ " let searchengine e    = 'http://www.etymonline.com/index.php?allowed_in_frame=0&search='
+ " let searchengine f    = 'http://sensmotdire.gnunux.info/:%s.html'
+ " let searchengine ft   = 'http://www.synonyms-fr.com/synonym.php?&submit.x=0&submit.y=0&word=%s'
+ " let defaultengine     = 'gl'
+ " "let searchengine t = 'http://translate.google.com/?source=osdd#auto|auto|%s'
+ " let searchengine t    = 'https://translate.google.co.uk/#fr/en/%s'
+ " let searchlimit       = 25
+ " let completionengines = ['google', 'wikipedia', 'amazon', 'd', 'dd', 't', 'u', 'w' ]
+ " let searchalias i     = 'imdb'
+ " let searchalias g     = 'google'
+ " let searchalias amz   = 'amazon'
+
+
+ " set autoupdategist
+ " map af createActiveTabbedHint
+ " map $ lastTab
+ " map 0 firstTab
+ " map <Space> l
+ " map <S-Space> h
+ " map gS :viewsource&<CR>
+ " map Q quitChrome
+ " map gs fullImageHint
+ " map gq :restore<Space>
+ " map a<Space> z<Enter>
+ " map <C-e> z<Enter>
+ " map <C-k> nextTab
+ " map <C-j> previousTab
+ " map cn :execute nzz<CR>
+ " map cN :execute Nzz<CR>
+ " map <C-d> :file ~/
+ " map m* setMark
+ " map <C-s> openLastHint
+ " map <C-h> :nohl<CR>
+ " map cc :set hud!<CR>
+ " map aa :tabopen g<Space>
+ " map ga :settings<CR>
+ " map g0 scrollToLeft
+ " map I yankHighlight
+ " map g$ scrollToRight
+ " imap <C-y> selectAll
+ " imap <C-a> <C-i>
+ " imap <C-l> forwardWord
+ " imap <C-h> backwardWord
+ " map <BS> <Nop>
+ " map <Leader>s :source<CR>
+ " map <Leader>n :set numerichints!<CR>
+ " map ci :call getIP<CR>
+ " map ? openLinkSearchBar

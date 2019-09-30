@@ -391,7 +391,9 @@ IfWinNotExist, ahk_exe chrome.exe
 if WinActive("ahk_exe chrome.exe")
 	Send ^{tab}   ;switch chrome tabs
 else
+{
 	WinActivate ahk_exe chrome.exe
+}
 Return
 
 ^9::	;Ctrl+9 : explorer
@@ -401,13 +403,31 @@ GroupAdd, G_EXPLORER, ahk_class CabinetWClass
 if WinActive("ahk_exe explorer.exe")
 	GroupActivate, G_EXPLORER, r
 else
+{
 	WinActivate ahk_class CabinetWClass
+}
+return
+
+^8::	;Ctrl+8 vifm
+IfWinNotExist, ahk_exe vifm.exe
+	Run, vifm.exe
+WinActivate ahk_exe vifm.exe
 return
 
 ^5::
 IfWinNotExist, ahk_exe gvim.exe
     Run, gvim.exe
 WinActivate ahk_exe gvim.exe 
+return
+
+^3::
+IfWinNotExist, ahk_exe devenv.exe
+    Run, devenv.exe
+WinActivate ahk_exe devenv.exe 
+; Send, !w
+; Send, w
+; Send, {Enter}
+Send {Tab}
 return
     
 ;================================================================================
@@ -436,38 +456,43 @@ F3::Send ^w			;close current tab
 F4::Send ^W			;close all tab
 #IfWinActive
 
+#IfWinActive ahk_exe devenv.exe
+^n::Send {Down}
+^p::Send {Up}
+#IfWinActive 
+
 ;vim mode test
 ; LCtrl & Tab::
-RCtrl::
-; ^Space::   ;Ctrl + Space
-if (mode=="windows")
-{
-    mode := "vim_normal"
-    ; SetCapsLockState, On
-    SetScrollLockState, On
-    ; MsgBox, current mode is vim_normal
-}
-else if (mode == "vim_normal")
-{
-    mode := "windows"
-    ; SetCapsLockState, Off
-    SetScrollLockState, Off
-    ; MsgBox, current mode is windows
-}
-return
+; RCtrl::
+; ; ^Space::   ;Ctrl + Space
+; if (mode=="windows")
+; {
+;     mode := "vim_normal"
+;     ; SetCapsLockState, On
+;     SetScrollLockState, On
+;     ; MsgBox, current mode is vim_normal
+; }
+; else if (mode == "vim_normal")
+; {
+;     mode := "windows"
+;     ; SetCapsLockState, Off
+;     SetScrollLockState, Off
+;     ; MsgBox, current mode is windows
+; }
+; return
 
-#If (mode == "vim_normal")
-h::Left
-j::Down
-k::Up
-l::Right
+; #If (mode == "vim_normal")
+; h::Left
+; j::Down
+; k::Up
+; l::Right
 
-n::PgDn
-p::PgUp
+; n::PgDn
+; p::PgUp
 
-; g::Run, gvim.exe
-; e::Run, everything.exe
-#If
+; ; g::Run, gvim.exe
+; ; e::Run, everything.exe
+; #If
 
 ; g::
 ; if (GetKeyState(ScrollLock, "P"))
@@ -478,3 +503,7 @@ p::PgUp
 ; if (mode=="vim_normal")
 ; Send, {Home}
 ; return
+
+;한영전환
++space::
+Send {vk15}

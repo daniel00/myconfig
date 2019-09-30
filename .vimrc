@@ -1,3 +1,7 @@
+" 플러그인 읽어오지 못하는 문제 테스트중....
+
+
+
 syntax on
 "nnoremap W :w<CR>
 "nnoremap Q :q<CR>
@@ -7,7 +11,23 @@ syntax on
 "  set guifont=Source_Code_Pro:h12
 "endif
 
-set guifont=Source_Code_Pro:h12
+"set encoding=utf-8
+";set guifont=Consolas:h12:cANSI
+"set guifontwide=Dotumche:h1:cDEFAULT
+"lang mes en_US
+"source $VIMRUNTIME/delmenu.vim
+"source $VIMRUNTIME/menu.vim
+
+"set linespace=3
+"set encoding=utf-8
+"set fileencoding=utf-8
+"set guifont=Source_Code_Pro:h12			
+"set guifont=Monaco:h12      			
+"set guifontwide=D2Coding:h12 			
+
+set encoding=utf-8		
+"set guifont=Source_Code_Pro:h12
+set guifont=D2Coding:h12
 colorscheme desert
 set cursorline
 
@@ -22,9 +42,9 @@ set ignorecase
 set incsearch
 set scrolloff=5
 
-let $LANG = 'en_US'
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
+"let $LANG = 'en_US'
+"source $VIMRUNTIME/delmenu.vim
+"source $VIMRUNTIME/menu.vim
 
 "nnoremap ; :
 inoremap  jk <Esc>
@@ -43,16 +63,35 @@ nnoremap  #  #zz
 nnoremap  g* g*zz
 nnoremap  G  Gzz
 
+nnoremap  <C-H> <C-W>h
+nnoremap  <C-L> <C-W>l
 
 """ copy to clipboard """""
 vnoremap  <C-C> "+y
 vnoremap  <C-V> "+p
+nnoremap  <C-C> "+yy
 nnoremap  <C-V> "+p
 
-""" copy 1 line to clipboard """""
-nnoremap  <C-C> "+yy
+" CTRL-A is Select all
+noremap <C-A> gggH<C-O>G
+inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+cnoremap <C-A> <C-C>gggH<C-O>G
+onoremap <C-A> <C-C>gggH<C-O>G
+snoremap <C-A> <C-C>gggH<C-O>G
+xnoremap <C-A> <C-C>ggVG
 
+" if has("gui")
+"   " CTRL-F is the search dialog
+"   noremap  <expr> <C-F> has("gui_running") ? ":promptfind\<CR>" : "/"
+"   inoremap <expr> <C-F> has("gui_running") ? "\<C-\>\<C-O>:promptfind\<CR>" : "\<C-\>\<C-O>/"
+"   cnoremap <expr> <C-F> has("gui_running") ? "\<C-\>\<C-C>:promptfind\<CR>" : "\<C-\>\<C-O>/"
 
+"   " CTRL-H is the replace dialog,
+"   " but in console, it might be backspace, so don't map it there
+"   nnoremap <expr> <C-H> has("gui_running") ? ":promptrepl\<CR>" : "\<C-H>"
+"   inoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-O>:promptrepl\<CR>" : "\<C-H>"
+"   cnoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-C>:promptrepl\<CR>" : "\<C-H>"
+" endif
 
 
 nnoremap <CR> :nohl<CR>
@@ -87,32 +126,63 @@ set path+=.
 
 
 
-""" Vundle """
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
+"""" Vundle """
+"set nocompatible              " be iMproved, required
+"filetype off
+"set rtp+=~/.vim
+"set rtp+=~/.vim/bundle/Vundle.vim
 "
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-Bundle 'OmniSharp/omnisharp-vim'
+"call vundle#begin('~/.vim/bundle')
+"Plugin 'VundleVim/Vundle.vim'
+"
+""Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-surround'
+"Bundle 'tpope/vim-commentary'
+"Bundle 'Lokaltog/vim-easymotion'
+""Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+""Bundle 'tpope/vim-rails.git'
+""Bundle 'OmniSharp/omnisharp-vim'
+"
+"call vundle#end()            " required
+"filetype plugin indent on
+"
+"
+"map <space> <Plug>(easymotion-prefix)
+"
+"""" vim-commentary """
+"setlocal commentstring=//\ %s
+"abbr cwl	console.writeline();
 
-map <space> <Plug>(easymotion-prefix)
 
-""" vim-commentary """
-setlocal commentstring=//\ %s
-abbr cwl	console.writeline();
+"" Use the stdio version of OmniSharp-roslyn:
+"let g:OmniSharp_server_stdio = 1
+"let g:OmniSharp_server_path = 'C:\Users\yoo\Downloads\omnisharp-win-x86\OmniSharp.exe'
+"
 
 
-" Use the stdio version of OmniSharp-roslyn:
-let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_server_path = 'C:\Users\yoo\Downloads\omnisharp-win-x86\OmniSharp.exe'
+
+
+
+
+"============================================================
+"below lines is for vundle plugin;
+"============================================================
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+" My Bundle here:
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'git://git.wincent.com/command-t.git'
+"Plugin 'file:///home/gmarik/path/to/plugin'
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'tpope/vim-commentary'
+
+call vundle#end()            " required
+
+
+
+
