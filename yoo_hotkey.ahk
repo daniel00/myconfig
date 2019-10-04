@@ -348,8 +348,10 @@ return
 
 :*?:;log::geunsik.yoo{Tab}daniel00*{Enter}
 :*?:;yoo::유근식
-:*?:;pwd::sdi-4784{Enter}
+:*?:;pwd;::sdi-4784{Enter}
 :*?:;eml::yookeunsik@naver.com
+:*?:;안녕::안녕하세요 생기연 유근식 입니다.
+
 :*?:;arrup::↑
 :*?:;arrdn::↓
 :*?:;arrri::→
@@ -414,21 +416,22 @@ IfWinNotExist, ahk_exe vifm.exe
 WinActivate ahk_exe vifm.exe
 return
 
+
+^7::
+IfWinNotExist, ahk_exe devenv.exe
+    Run, devenv.exe
+WinActivate ahk_exe devenv.exe 
+; Send !{W}{W}
+; Send Enter
+Send {Tab}
+return
+
 ^5::
 IfWinNotExist, ahk_exe gvim.exe
     Run, gvim.exe
 WinActivate ahk_exe gvim.exe 
 return
 
-^3::
-IfWinNotExist, ahk_exe devenv.exe
-    Run, devenv.exe
-WinActivate ahk_exe devenv.exe 
-; Sleep, 100
-; Send !{w}{w}{Enter}
-Send {Tab}
-; Send !{0}
-return
     
 ;================================================================================
 
