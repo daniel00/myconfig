@@ -1,5 +1,10 @@
 set backspace=2
-set scrolloff=5
+set scrolloff=0
+set hls
+
+nnoremap ; :
+nnoremap <space> ;
+nnoremap dm :delmark<space>
 
 "nnoremap W :w<CR>
 
@@ -14,7 +19,6 @@ nnoremap  #  #zz
 nnoremap  g* g*zz
 nnoremap  G  Gzz
 
-nnoremap  <C-W> <C-Y>
 
 vnoremap  cp	"+y
 vnoremap  <C-C>	"+y
@@ -33,36 +37,45 @@ inoremap <C-K> <DEL>
 
 inoremap <C-O> <Esc>o
 
-nnoremap <C-j> <C-d>zz
-nnoremap <C-k> <C-u>zz
-"nmap <C-n> :vsc Edit.NextMethod<cr>zz
-"nmap <C-m> :vsc Edit.PreviousMethod<cr>zz
+"nnoremap <C-j> <C-d>zz
+"nnoremap <C-k> <C-u>zz
+nnoremap <C-j> 3<C-E>
+nnoremap <C-k> 3<C-Y>
+
+nmap <C-]> :vsc Edit.NextMethod<cr>zz
+nmap <C-[> :vsc Edit.PreviousMethod<cr>zz
 
 let mapleader=","
 
-nmap <leader>b :vsc Debug.ToggleBreakpoint<cr>
-nmap <leader>r :vsc Debug.StartWithoutDebugging<cr>
-nmap <leader>d :vsc Debug.Start<cr>
+nmap <space>s		<leader>s
+nmap <leader>b		:vsc Debug.ToggleBreakpoint<cr>
+nmap <leader>r		:vsc Debug.StartWithoutDebugging<cr>
+nmap <leader>d		:vsc Debug.Start<cr>
+
+nmap <leader>x		:vsc View.SolutionExplorer<CR>
+nmap <leader>e		:vsc View.ErrorList<CR>
+nmap <leader>q		:vsc Window.Quicklaunch<CR>
+nmap <leader>w		:vsc Window.NewWindow<CR>
+nmap <leader>f		:vsc Edit.FindinFiles<cr>
+nmap <leader>s		:vsc Tools.InvokeAceJumpCommand<CR>
+nmap <leader>n		:vsc  Refactor.Rename<CR>
+
+"nmap <leader>h		:vsc Window.Hide<CR>
 "nnoremap <leader>r :vsc TestExplorer.RunAllTestsInContext<cr>
 "nnoremap <leader>R :vsc TestExplorer.DebugAllTestsInContext<cr>
 
-nmap <leader>ex		:vsc View.SolutionExplorer<CR>
-nmap <leader>er		:vsc View.ErrorList<CR>
-nmap <leader>q		:vsc Window.Quicklaunch<CR>
-nmap <leader>h		:vsc Window.Hide<CR>
+nmap gj				:vsc Window.NextSplitPane<CR>
+
 nmap <C-O>			:vsc View.NavigateBackward<CR>
 nmap <C-I>			:vsc View.NavigateForward<CR>
 
-vnoremap <C-K>			:vsc Edit.SurroundWith<CRghgh
+nnoremap <leader>k			:vsc Edit.SurroundWith<CR>
 nnoremap gh				:vsc Tools.NavigateTabGroups.Previous<CR>
-"nnoremap gl			:vsc Tools.NavigateTabGroups.Next<CR>
+nnoremap gl			:vsc Tools.NavigateTabGroups.Next<CR>
 
 "nmap <leader>fr		:vsc Edit.FindAllReferences<cr>
-"nmap <leader>ff		:vsc Edit.FindinFiles<cr>
-nmap me					:vsc View.SolutionExplorer<CR>
-nmap <leader>s			:vsc Tools.InvokeAceJumpCommand<CR>
+"nmap me					:vsc View.SolutionExplorer<CR>
 "nmap <leader>rn			:vsc  EditorContextMenus.CodeWindow.Refactor.RefactorRename<CR>
-nmap <leader>rn			:vsc  Refactor.Rename<CR>
 
 nmap <C-H> <C-PageUp>		
 nmap <C-L> <C-PageDown>
@@ -83,8 +96,8 @@ vnoremap gc  :vsc Edit.ToggleComment<CR>
 ":nnoremap <C-w>h :vsc Window.MovetoPreviousTabGroup<CR>
 
 nnoremap go ^
-nnoremap gl g_
-nnoremap g; '.
+nnoremap gk g_
+"nnoremap g; '.
 
 " Surround simulating bindings
 nnoremap s) ciw(<C-r>")<Esc>
@@ -125,4 +138,6 @@ vnoremap S* c/*<C-r>"*/<Esc>
 vnoremap St c<lt>div><CR><C-r>"<Esc>`<lt>lcw
 
 
-nnoremap  yif vaBVoky<Esc>j%
+nmap  vif vaBVok
+nmap  dif vifd
+nmap  yif vify<Esc>j%
