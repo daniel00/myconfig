@@ -47,7 +47,9 @@ nmap <C-[> :vsc Edit.PreviousMethod<cr>zz
 
 let mapleader=","
 
-nmap <space>s		<leader>s
+"nmap <space>s		<leader>s
+"nunomap <space>s
+
 nmap <leader>b		:vsc Debug.ToggleBreakpoint<cr>
 nmap <leader>r		:vsc Debug.StartWithoutDebugging<cr>
 nmap <leader>d		:vsc Debug.Start<cr>
@@ -58,7 +60,17 @@ nmap <leader>q		:vsc Window.Quicklaunch<CR>
 nmap <leader>w		:vsc Window.NewWindow<CR>
 nmap <leader>f		:vsc Edit.FindinFiles<cr>
 nmap <leader>s		:vsc Tools.InvokeAceJumpCommand<CR>
-nmap <leader>n		:vsc  Refactor.Rename<CR>
+"nmap <leader>n		:vsc  Refactor.Rename<CR>
+nmap <leader>gr		:vsc Edit.FindAllReferences<CR>
+
+nnoremap R			:vsc Refactor.Rename<cr>
+
+map gd				:vsc Edit.GotoDefinition<CR>
+map gi				:vsc Edit.GoToImplementation<CR>
+map gp				:vsc Edit.PeekDefinition<CR>
+
+nmap <leader>o		:e ~/_vsvimrc<CR>
+nmap <leader>v		:source ~/_vsvimrc<CR>
 
 "nmap <leader>h		:vsc Window.Hide<CR>
 "nnoremap <leader>r :vsc TestExplorer.RunAllTestsInContext<cr>
@@ -73,7 +85,6 @@ nnoremap <leader>k			:vsc Edit.SurroundWith<CR>
 nnoremap gh				:vsc Tools.NavigateTabGroups.Previous<CR>
 nnoremap gl			:vsc Tools.NavigateTabGroups.Next<CR>
 
-"nmap <leader>fr		:vsc Edit.FindAllReferences<cr>
 "nmap me					:vsc View.SolutionExplorer<CR>
 "nmap <leader>rn			:vsc  EditorContextMenus.CodeWindow.Refactor.RefactorRename<CR>
 

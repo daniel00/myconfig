@@ -421,7 +421,8 @@ return
 IfWinNotExist, ahk_exe devenv.exe
     Run, devenv.exe
 WinActivate ahk_exe devenv.exe 
-; Send !{W}{W}
+Sleep, 100
+Send !{W}{W}
 ; Send Enter
 Send {Tab}
 return
