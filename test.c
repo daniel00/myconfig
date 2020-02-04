@@ -1,22 +1,24 @@
 #include <stdio.h>
+#include <algorithm.h>
+
 
 void testfunc1()
 {
-
+	printf("");
 }
 
 void testfunc2()
 {
+	printf("hello world\n");
+	scanf("");
 }
 
 void testfunc3()
 {
-    printf("test func3\n");
-    return;
+
 }
 
 int main()
 {
-    printf("test string\n");
-    return 0;
+	printf("");
 }

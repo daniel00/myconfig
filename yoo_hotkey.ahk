@@ -1,18 +1,21 @@
-﻿;global variables
+﻿
+SetTitleMatchMode 2
+
+global variables
 mode := "windows"
-
-
-
 
 GroupAdd, NoteSpace, ahk_class Notepad
 GroupAdd, NoteSpace, ahk_class IEFrame
 
 
-; GroupAdd, Editor, ahk_exe Code.exe
-; GroupAdd, Editor, ahk_exe devenv.exe
-; GroupAdd, Editor, ahk_exe gvim.exe
-; GroupAdd, Editor, ahk_exe Explorer.exe
-; GroupAdd, Editor, ahk_exe chrome.exe
+GroupAdd, VIMGROUP, ahk_exe gvim.exe
+GroupAdd, VIMGROUP, ahk_exe code.exe
+GroupAdd, VIMGROUP, ahk_exe devenv.exe
+; GroupAdd, VIMGROUP, ahk_exe chrome.exe
+GroupAdd, VIMGROUP, ahk_exe whale.exe
+GroupAdd, VIMGROUP, ahk_exe ccstudio.exe
+GroupAdd, VIMGROUP, ahk_exe vifm.exe
+GroupAdd, VIMGROUP, ahk_exe ubuntu.exe
 
 GroupAdd, EXPLORER, ahk_exe Q-dir.exe
 GroupAdd, EXPLORER, ahk_class CabinetWClass 
@@ -22,264 +25,27 @@ GroupAdd, EXPLORER, ahk_class CabinetWClass
 GroupAdd, NPP, ahk_exe notepad.exe
 return
 
-SetTitleMatchMode, 2
-
-
-
-
-
-
-;Global hotkeys
-;======================================================================
-^;::Send {Esc}				;Ctrl+;
-LCtrl & '::AltTab			;Ctrl+' / switch windows , Alt-Tab, Ctrl-;
-
-^\::WinClose,    A
-;!m::WinMaximize, A         ;Maximize Active Window
-;!n::WinMinimize, A         ;Minimize Active Window
-;!u::WinRestore,  A
-
-;======================================================================
-
-
-
-
-
 #IfWinActive, ahk_class TaskSwitcherWnd
 h::left
 j::down
 k::up
 l::right
-#IfWinExist
+#IfWinActive
 
-#IfWinExist ahk_class  MultitaskingViewFrame 
+#IfWinActive ahk_class  MultitaskingViewFrame 
 h::left
 j::down
 k::up
 l::right
-#IfWinExist
+#IfWinActive
 
 #IfWinActive, ahk_exe Taskmgr.exe
-; h::Send, Left
-; j::Send, Down
-; k::Send, Up
-; l::Send, Right
 j:: Send {Down}
 k:: Send {Up}
 h:: Send {Left}
 l:: Send {Right}
-; n:: Send {Down}
-; p:: Send {Up}
 #IfWinActive
 
-; #IfWinActive ahk_group Broweser
-; ; ^d::MsgBox, in chrome
-; ^j:: Send {BS}
-; ^k:: Send {Del}
-; ^h:: Send {Left}
-; ^l:: Send {Right}
-
-; ^n:: Send {Down}
-; ^p:: Send {Up}
-; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-; #IfWinActive
-
-
-; #IfWinActive ahk_class CabinetWClass ahk_exe Q-dir.exe
-; #IfWinActive ahk_group EXPLORER
-; #IfWinActive ahk_class CabinetWClass
-
-;     ^j::Send { Down }
-;     ^k::Send {Up}
-;     ^u::Send !{ Up }
-
-;     ^h::Send {PgDn}
-;     ^l::Send {PgUp} 
-
-;     ;New folder Ctrl + Shift + n
-;     ; F4::^+n
-; #IfWinActive
-
-
-
-; #IfWinActive, ahk_class #32770
-; ^h:: Send {Left}
-; ^j:: Send {BS}
-; ^l:: Send {Right}
-; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-; #IfWinActive 
-
-
-; #IfWinActive, ahk_class Notepad ahk_class IEFrame
-; #IfWinActive, ahk_group NoteSpace 
-; ^h::Send {Left} 
-; ^j::Send {Down}
-; ^k::Send {Up}
-; ^l::Send {Right}
-; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-; ^o:: Send {End}{Enter}
-; #IfWinActive 
-
-; #IfWinActive,  ahk_exe searchUI.exe
-; ^h::Send {Left} 
-; ^j::Send {Down}
-; ^k::Send {Up}
-; ^l::Send {Right}
-
-; ^u:: Send {Home}{ShiftDown}{End}{Right}{ShiftUp}{Del}
-; #IfWinActive 
-
-
-
-
-
-
-; :*?:ab::
-; KeyWait, c, T1
-; if ErrorLevel
-; MsgBox, timeout
-; else
-; Send, ab
-; return
-
-
-; :*?:##npp::
-; Run, notepad++.exe
-; return
-
-;end of autohotkey file
-
-;google search Win+C
-; #c::
-; {
-;     Run, http://www.google.com
-;     return
-; }
-; #v::
-; {
-;     Run, devenv.exe
-;     return
-; }
-; ; `;&s::
-; :*b3:;;;::
-; {
-;     Run, Code.exe
-;     return
-; }
-; #q::
-; {
-;     ; #IfWinNotExist 이걸로 하면 안된다...
-;     IfWinNotExist, ahk_exe Q-dir.exe
-;     {
-;         MsgBox, Q-dir not exist
-;         Run, Q-dir.exe
-;     }
-;     return
-; }
-
-
-
-
-; example by help doc
-; ~[::
-; Input, UserInput, V T5 L4 C, {enter}.{esc}{tab}, btw,otoh,fl,ahk,ca
-; if (ErrorLevel = "Max")
-; {
-;     MsgBox, You entered "%UserInput%", which is the maximum length of text.
-;     return
-; }
-; if (ErrorLevel = "Timeout")
-; {
-;     MsgBox, You entered "%UserInput%" at which time the input timed out.
-;     return
-; }
-; if (ErrorLevel = "NewInput")
-;     return
-; If InStr(ErrorLevel, "EndKey:")
-; {
-;     MsgBox, You entered "%UserInput%" and terminated the input with %ErrorLevel%.
-;     return
-; }
-; ; Otherwise, a match was found.
-; if (UserInput = "btw")
-;     Send, {backspace 4}by the way
-; else if (UserInput = "otoh")
-;     Send, {backspace 5}on the other hand
-; else if (UserInput = "fl")
-;     Send, {backspace 3}Florida
-; else if (UserInput = "ca")
-;     Send, {backspace 3}California
-; else if (UserInput = "ahk")
-;     Run, https://autohotkey.com
-; return
-
-
-
-
-
-
-
-; ;Input Test
-; ; `;`;::
-
-; ; ~~::
-; :*?:jj::
-
-; :*?:;;::
-; :*b2://::
-; :*b2:{space}{space}::
-; Input, UserInput, V T5 L4 C, {Enter}.{Esc}{Tab}, btw, otoh, fl, ahk, ca, npp
-;very important no space each user command!!!!!
-
-; :*b2://::
-; F4::
-; Input, UserInput, V T5 L4 C, {enter}.{esc}{tab},btw,ahk,npp,goo,r,e,d,m,l,qd
-; if (ErrorLevel = "Max")
-; {
-;     MsgBox, You entered "%UserInput%", which is the maximum length of text.
-;     return
-; }
-; if (ErrorLevel = "Timeout")
-; {
-;     MsgBox, You entered "%UserInput%" at which time the input timed out.
-;     return
-; }
-; if (ErrorLevel = "NewInput")
-;     return
-; if InStr(ErrorLevel, "EndKey:")
-; {
-;     MsgBox, You entered "%UserInput%" and terminated the input with %ErrorLevel%.
-;     return
-; }
-
-; ;otherwise , a match was found
-; if (UserInput = "btw")
-;     Send, {BackSpace 4}by the way
-; else if (UserInput = "ahk")
-;     Run, https://autohotkey.com
-; else if (UserInput = "npp")
-;     Run, notepad.exe         ;notepad
-; else if (UserInput = "goo")
-;     Run, https://google.com/
-; else if (UserInput = "r")
-;     Send, #r               ;run
-; else if (UserInput = "e")
-;     Send, #e               ;explorer
-; else if (UserInput = "d")
-;     Send, #d               ;Win+D, Minimize Window
-; else if (UserInput = "l")
-;     Send, ~#l            ;Win+L, Not Working...
-; else if (UserInput = "qd")
-;     Run, Qdir.exe
-
-; Send, {space 1}
-; return
-
-
-;context menu
-; #IfWinActive, ahk_exe, explorer.exe
-; !r::AppsKey
-; #IfWinActive
 
 
 ::;eml::yookeunsik@naver.com
@@ -289,8 +55,7 @@ l:: Send {Right}
 Run, notepad.exe
 return
 
-::;eve::
-Run, everything.exe
+::;eve:: Run, everything.exe
 return
 
 ::]npp::
@@ -305,21 +70,22 @@ InputBox, aa
 if (aa = "npp")
     Run, notepad.exe
 else if (aa = "code")
-    Run, code.exe
+    Run, C:\Users\Administrator\AppData\Local\Programs\Microsoft VS Code\Code.exe
 else if (aa = "hyp")
     Run, hyper.exe
 else if (aa = "cmd")
     Run, cmd.exe
 else if (aa = "eve")
-    Run, everything.exe
+    Run, C:\Program Files\Everything\Everything.exe
 else if (aa = "vs7")
     Run, devenv.exe
 else if (aa = "ee")
     Run, explorer.exe
 else if (aa = "ahk")
-	Run,  gvim.exe %A_ScriptFullPath%
+	Run,   C:\Program Files\Vim\vim81\gvim.exe %A_ScriptFullPath%
+	; Run,   code.exe %A_ScriptFullPath%
 else if (aa = "goo")
-    Run, http://google.com
+    Run, chrome.exe http://google.com
 else if (aa = "nav")
     Run, http://naver.com
 else if (aa == "sam")
@@ -356,7 +122,20 @@ return
 :*?:;arrdn::↓
 :*?:;arrri::→
 :*?:;arrle::←
-:*?:;cwl::Console.WriteLine("");{Left 3}
+:*?:;aup::↑
+:*?:;adn::↓
+:*?:;ari::→
+:*?:;ale::←
+
+
+
+:*?:;c1::①
+:*?:;c2::②
+:*?:;c3::③
+:*?:;c4::④
+:*?:;c5::⑤
+:*?:;c6::⑥
+:*?:;wl::Console.WriteLine("");{Left 3}
 
 
 ;delete all
@@ -368,7 +147,7 @@ Send, { Del }
 return
 
 ;view cached page in chrome
-; ^+l::
+; ^+k::
 ; Send, !d
 ; Sleep, 10
 ; Send, {Home}
@@ -377,28 +156,70 @@ return
 
 
 
-;^h::Send {Left} 
-;^j::Send {Down}
-;^k::Send {Up}
-;^l::Send {Right}
-
-
 ;================================================================================
 ;fast switch task, 윈도우 창을 빠르게 스위치 하는 단축키
 ;================================================================================
 
+; ^0::	;Ctrl+0 : chrome
+; IfWinExist, ahk_exe chrome.exe
+; {
+; 	WinActivate
+; 	WinMaximize
+; }
+; Run, chrome.exe http://www.google.com
+; Return
+
 ^0::	;Ctrl+0 : chrome
 IfWinNotExist, ahk_exe chrome.exe
-	Run, chrome.exe
+	Run, chrome.exe http://www.google.com
 if WinActive("ahk_exe chrome.exe")
 	Send ^{tab}   ;switch chrome tabs
 else
 {
 	WinActivate ahk_exe chrome.exe
 }
+return
+
+^9::
+IfWinExist, ahk_exe iexplore.exe
+{
+	; WinShow
+	WinActivate
+	WinMaximize
+}
+Run, iexplore.exe
 Return
 
-^9::	;Ctrl+9 : explorer
+; ^9::
+; IfWinNotExist, ahk_exe iexplore.exe
+; {
+; 	Run, iexplore.exe www.samsung.net
+; }
+; WinActivate, ahk_exe iexplore.exe
+; ; WinMaximize, iexplore.exe
+; return
+
+
+^8::	;Ctrl+8 vifm
+IfWinNotExist, ahk_exe vifm.exe
+	Run, vifm.exe
+WinActivate ahk_exe vifm.exe
+return
+
+
+^7::
+SetTitleMatchMode, RegEx
+IfWinExist, ahk_exe devenv.exe
+{
+	WinShow
+	WinActivate
+	Send,{Alt}{w}{W}{A}{Enter}
+}
+else
+Run, devenv.exe
+Return
+
+^6::	;Ctrl+6 : explorer
 IfWinNotExist, ahk_class CabinetWClass
 	Run, explorer.exe
 GroupAdd, G_EXPLORER, ahk_class CabinetWClass
@@ -410,30 +231,30 @@ else
 }
 return
 
-^8::	;Ctrl+8 vifm
-IfWinNotExist, ahk_exe vifm.exe
-	Run, vifm.exe
-WinActivate ahk_exe vifm.exe
-return
-
-
-^7::
-IfWinNotExist, ahk_exe devenv.exe
-    Run, devenv.exe
-WinActivate ahk_exe devenv.exe 
-Sleep, 100
-Send !{W}{W}
-; Send Enter
-Send {Tab}
-return
-
 ^5::
 IfWinNotExist, ahk_exe gvim.exe
     Run, gvim.exe
 WinActivate ahk_exe gvim.exe 
 return
 
+^4::
+IfWinNotExist, ahk_exe code.exe
+    Run, code.exe
+WinActivate ahk_exe code.exe 
+return
     
+^3::
+IfWinNotExist, ahk_exe mySingleMessenger.exe
+	Run, ahk_exe mySingleMessenger.exe
+WinActivate, ahk_exe mySingleMessenger.exe
+return
+
+
+^2::
+IfWinNotExist, ahk_exe Everything.exe
+    Run, C:\Program Files (x86)\Everything\Everything.exe
+WinActivate, ahk_exe Everything.exe
+return
 ;================================================================================
 
 ; #IfWinActive ahk_exe devenv.exe
@@ -449,17 +270,24 @@ return
 #IfWinActive ahk_exe chrome.exe
 ^h::Send ^+{tab}	;previous tab
 ^l::Send ^{tab}		;next tab
-^n::Send {n}{z}{z}
 ^j::Send {Down}
 ^k::Send {Up}
 ; ^n::Send {Down}
 ; ^p::Send {Up}
-
-;same above action to Function Keys
-F1::Send ^+{tab}	;previous tab
-F2::Send ^{tab}		;next tab
-F3::Send ^w			;close tab
 #IfWinActive
+
+; #IfWinActive ahk_exe whale.exe
+; ^h::Send ^+{tab}	;previous tab
+; ^l::Send ^{tab}		;next tab
+; ^j::Send {Down}
+; ^k::Send {Up}
+; ^n::Send {Down}
+; ^p::Send {Up}
+; #IfWinActive
+
+
+; F3::Send ^w			;close tab
+; #IfWinActive
 
 
 #IfWinActive ahk_exe notepad++.exe
@@ -467,6 +295,7 @@ F1::Send ^{PgUp}
 F2::Send ^{PgDn}	;previous tab
 F3::Send ^w			;close current tab
 F4::Send ^W			;close all tab
+^j::Send {BS}
 #IfWinActive
 
 #IfWinActive ahk_exe devenv.exe
@@ -474,49 +303,195 @@ F4::Send ^W			;close all tab
 ^p::Send {Up}
 #IfWinActive 
 
-;vim mode test
-; LCtrl & Tab::
-; RCtrl::
-; ; ^Space::   ;Ctrl + Space
-; if (mode=="windows")
-; {
-;     mode := "vim_normal"
-;     ; SetCapsLockState, On
-;     SetScrollLockState, On
-;     ; MsgBox, current mode is vim_normal
-; }
-; else if (mode == "vim_normal")
-; {
-;     mode := "windows"
-;     ; SetCapsLockState, Off
-;     SetScrollLockState, Off
-;     ; MsgBox, current mode is windows
-; }
-; return
-
-; #If (mode == "vim_normal")
-; h::Left
-; j::Down
-; k::Up
-; l::Right
-
-; n::PgDn
-; p::PgUp
-
-; ; g::Run, gvim.exe
-; ; e::Run, everything.exe
-; #If
-
-; g::
-; if (GetKeyState(ScrollLock, "P"))
-; MsgBox, gg
-; return
-
-; g & g::
-; if (mode=="vim_normal")
-; Send, {Home}
-; return
 
 ;한영전환
 +space::
 Send {vk15}
+return
+
+RShift & Ctrl::
+Send {Tab}
+return
+
+
+;Global hotkeys
+;======================================================================
+^i::Send {BS}
+
+#IfWinNotActive, ahk_group VIMGROUP
+^n:: Send {PgDn}
+^m:: Send {PgUp}
+
+^h:: Send {Left}
+^j:: Send {Down}
+^k:: Send {Up}
+^l:: Send {Right}
+
+
+; ^+h:: Send {Home}
+; ^+j:: Send {PgDn}
+; ^+k:: Send {PgUp}
+; ^+l:: Send {End}
+
+; ^p::Send {BS}
+; ^o::Send ^{BS}
+; ^`:: Send {Del}
+#IfWinNotActive
+
+
+
+^;::Send {Esc}
+return
+
+LCtrl & '::AltTab			;Ctrl+' / switch windows , Alt-Tab, Ctrl-;
+return
+
+;close activated window
+^+\::WinClose,    A
+return
+
+;close all window
+; ^+\::
+; Send, #d
+; Sleep 100
+; Send, !{F4}
+; return
+
+LCtrl & RShift:: 
+; msgbox, "ctrl shift"
+Sleep 300
+Send, {LWin}
+return
+
+
+;move and maxmize active window to left monitor
+; #0::
+; ; ^+0::
+; Send #+{left}
+; WinMaximize, A
+; return
+
+;move and maxmize active window to right monitor
+; #2::
+; Send #+{right}
+; WinMaximize, A
+; return
+;======================================================================
+
+
+;scroll Lockk
+; ~Scrolllock & h:: Send {left}
+; ~Scrolllock & j:: Send {down}
+; ~Scrolllock & k:: Send {up}
+; ~Scrolllock & l:: Send {right}
+; return 
+
+
+
+
+;==============================================================================
+; #SingleInstance force
+; SendMode Input
+; SetCapslockState, AlwaysOff
+; ~Capslock::
+; 	Send {Ctrl DownTemp}{Shift DownTemp}{Alt DownTemp}{LWin DownTemp}
+; 	KeyWait, Capslock
+; 	Send {Ctrl Up}{Shift Up}{Alt Up}{LWin Up}
+; 	if (A_PriorKey = "Capslock") {
+; 		Send {Esc}
+; 	}
+; return
+
+; ~Capslock & h:: Send {left}
+; ~Capslock & j:: Send {down}
+; ~Capslock & k:: Send {up}
+; ~Capslock & l:: Send {right}
+
+; ~Capslock & q:: Send {home}
+; ~Capslock & e:: Send {end}
+;==============================================================================
+
+LAlt & h::
+	WinMove,A,,0,0,1920,1080
+	WinMaximize, A
+return
+
+LAlt & l::
+	WinMove,A,,1920,0,1920,1080
+	WinMaximize, A
+return
+
+
+; <!5:: 
+; Send {f5}
+; ; msgbox F5
+; return
+
+; ~A & H::
+; 	Send #+{left}
+; 	WinMaximize, A
+; 	; Send {BS}
+; return
+
+; ~A & L::
+; 	Send #+{right}
+; 	WinMaximize, A
+; 	; Send {BS}
+; return
+
+
+
+
+
+; SendMode Input
+; a & h::
+; 	Send #+{left}
+; 	WinMaximize, A
+; return
+
+; a & l::
+; 	Send #+{right}
+; 	WinMaximize, A
+; return
+
+
+; #if GetKeyState("ScrollLock", "T")
+; 	a::msgbox pressed 'a'
+; #if
+
+; ^/:: Send {ScrollLock}
+
+
+;HHKB fn key as left ALT
+; !i::Send {PrintScreen}
+; !o::Send {Scrolllock}
+; !p::Send {Pause}
+; !k::Send {Home}
+; !,::Send {End}
+; LAlt & l::Send {PgUp}
+; LALT & .::Send {PgDn}
+; LALT & [::Send {Up}
+; !;::Send {left}
+; LALT & '::Send {right}
+; LALT & /::Send {down}
+
+; !t::
+; TrayTip #1, test string
+; sleep 2000
+; return
+
+
+;media keys
+^+space::Send   {Media_Play_Pause}
+^+j::Send   	{Volume_Down}
+^+k::Send   	{Volume_Up}
+^+m::Send  		{Volume_Mute}
+^+h::Send        {left}
+^+l::Send   		{right}
+; ^+h::Send        {Media_Prev}
+; ^+l::Send   		{Media_Next}
+
+;global delete for HHKB
+;해피해킹 키보드의 Backspace 위치가 Enter 바로 위에 있어서
+;종종 백스패이스와 엔터를 잘못 누르는 경우가 있네
+;일단 연습을 통해 익숙해져야 하겠지만 , 다른 방법으로 BS를 누르는 방법도 고안해 보자
