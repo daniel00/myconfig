@@ -2,7 +2,7 @@
 SetTitleMatchMode 2
 
 global variables
-mode := "windows"
+mode := "normal mode"
 
 GroupAdd, NoteSpace, ahk_class Notepad
 GroupAdd, NoteSpace, ahk_class IEFrame
@@ -16,6 +16,8 @@ GroupAdd, VIMGROUP, ahk_exe whale.exe
 GroupAdd, VIMGROUP, ahk_exe ccstudio.exe
 GroupAdd, VIMGROUP, ahk_exe vifm.exe
 GroupAdd, VIMGROUP, ahk_exe ubuntu.exe
+GroupAdd, VIMGROUP, ahk_exe nvim.exe
+GroupAdd, VIMGROUP, ahk_exe nvim-qt.exe
 
 GroupAdd, EXPLORER, ahk_exe Q-dir.exe
 GroupAdd, EXPLORER, ahk_class CabinetWClass 
@@ -169,6 +171,18 @@ return
 ; Run, chrome.exe http://www.google.com
 ; Return
 
+^+Enter::	;Ctrl+0 : chrome
+IfWinNotExist, ahk_exe chrome.exe
+	Run, chrome.exe http://www.google.com
+if WinActive("ahk_exe chrome.exe")
+	Send ^{tab}   ;switch chrome tabs
+else
+{
+	WinActivate ahk_exe chrome.exe
+}
+return
+
+
 ^0::	;Ctrl+0 : chrome
 IfWinNotExist, ahk_exe chrome.exe
 	Run, chrome.exe http://www.google.com
@@ -252,7 +266,7 @@ return
 
 ^2::
 IfWinNotExist, ahk_exe Everything.exe
-    Run, C:\Program Files (x86)\Everything\Everything.exe
+    Run, C:\Program Files\Everything\Everything.exe
 WinActivate, ahk_exe Everything.exe
 return
 ;================================================================================
@@ -272,8 +286,16 @@ return
 ^l::Send ^{tab}		;next tab
 ^j::Send {Down}
 ^k::Send {Up}
-; ^n::Send {Down}
-; ^p::Send {Up}
+^n::Send {Down}
+^p::Send {Up}
+
+^o::Send {BS}
+
+^u::
+Send ^a
+Sleep 10
+Send {BS}
+return
 #IfWinActive
 
 ; #IfWinActive ahk_exe whale.exe
@@ -299,8 +321,8 @@ F4::Send ^W			;close all tab
 #IfWinActive
 
 #IfWinActive ahk_exe devenv.exe
-^n::Send {Down}
-^p::Send {Up}
+; ^n::Send {Down}
+; ^p::Send {Up}
 #IfWinActive 
 
 
@@ -316,7 +338,7 @@ return
 
 ;Global hotkeys
 ;======================================================================
-^i::Send {BS}
+; ^i::Send {BS}
 
 #IfWinNotActive, ahk_group VIMGROUP
 ^n:: Send {PgDn}
@@ -347,7 +369,7 @@ LCtrl & '::AltTab			;Ctrl+' / switch windows , Alt-Tab, Ctrl-;
 return
 
 ;close activated window
-^+\::WinClose,    A
+^+;::WinClose,    A
 return
 
 ;close all window
@@ -495,3 +517,50 @@ return
 ;해피해킹 키보드의 Backspace 위치가 Enter 바로 위에 있어서
 ;종종 백스패이스와 엔터를 잘못 누르는 경우가 있네
 ;일단 연습을 통해 익숙해져야 하겠지만 , 다른 방법으로 BS를 누르는 방법도 고안해 보자
+
+#IfWinNotActive, ahk_group VIMGROUP
+^i::Send {Tab}
+
+^o::Send {BS}
+^+o::Send ^{BS}
+
+^u::
+Send ^a
+Sleep 10
+Send {BS}
+return
+#IfWinNotActive
+
+^+w::
+; Send , #
+Send {LWin Down}
+Sleep 300
+Send {LWin Up}
+Sleep 300
+MsgBox "Ctrl Shift W"
+return
+
+; LAlt::
+; if (mode="normal mode")
+; {
+; 	msgbox , "arrow mode"
+; 	mode:="arrow mode"
+; }
+; else if (mode="arrow mode")
+; {
+; 	mode:="normal mode"
+; 	msgbox , "normal mode"
+; }
+; return
+
+
+
+; if(mode="arrow mode")
+; {
+; 	h::Send {left}
+; }
+; else if(mode="normal mode")
+; {
+; 	h::h
+; }
+; return
